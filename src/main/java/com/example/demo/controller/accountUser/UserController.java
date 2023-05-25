@@ -20,8 +20,8 @@ public class UserController {
     private ServiceSendUserRequest serviceSendUserRequest;
 
     @PostMapping(path = "/user/savings-user")
-    public UserResponseDTO createUser(@RequestBody UserDto userDto) throws JsonProcessingException {
-        return serviceSendUserRequest.createUser(userDto);
+    public void createUser(@RequestBody UserDto userDto) throws JsonProcessingException {
+        serviceSendUserRequest.createUser(userDto);
     }
     @GetMapping(path = "/user/check-accounts/{idDocument}")
     public List<AccountResponseDTO> getAllAccounts(@PathVariable int idDocument) throws JsonProcessingException {

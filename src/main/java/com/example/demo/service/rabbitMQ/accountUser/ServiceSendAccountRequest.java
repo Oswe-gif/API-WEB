@@ -38,11 +38,12 @@ public class ServiceSendAccountRequest {
         return objectMapper.writeValueAsString(accountDTO);
     }
 
-    /*public AccountResponseDTO insertAccount(AccountDTO accountDTO) throws JsonProcessingException {
-        AccountResponseDTO accountResponseDTO;
-        accountResponseDTO= restTemplate.postForObject("http://localhost:8081/account/savings-account",AccountResponseDTO accountResponseDTO, AccountResponseDTO.class);
-        return accountResponseDTO;
-    }*/
+    public void insertAccount(AccountDTO accountDTO) throws JsonProcessingException {
+        System.out.println("Hola");
+        rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
+        rabbitTemplate.convertAndSend("accountUserExchange","account", accountDTO);
+
+    }
     public AccountResponseDTO checkBalance (int idAccount) throws JsonProcessingException {
         AccountResponseDTO accountResponseDTO;
         accountResponseDTO= restTemplate.getForObject("http://localhost:8081/account/check-balance/"+idAccount,AccountResponseDTO.class);

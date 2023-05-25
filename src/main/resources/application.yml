@@ -1,2 +1,8 @@
 server:
   port: 9090
+spring:
+  rabbitmq:
+    port: 5672
+    username: guest
+    password: guest
+    host: 35.209.158.51
