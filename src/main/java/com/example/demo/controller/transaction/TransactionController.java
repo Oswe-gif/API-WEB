@@ -19,13 +19,13 @@ public class TransactionController {
     private ServiceSendTransactionRequest serviceSendTransactionRequest;
 
     @PostMapping(path="/transaction/transfer-money")
-    public TransactionResponseDTO doTransaction (@RequestBody TransactionDto transactionDto) throws JsonProcessingException {
+    public void doTransaction (@RequestBody TransactionDto transactionDto) throws JsonProcessingException {
         System.out.println("Transaction");
-        return serviceSendTransactionRequest.sendTransactionRequest(transactionDto);
+        serviceSendTransactionRequest.sendTransactionRequest(transactionDto);
     }
 
     @PostMapping(path="/transaction/deposit-money")
-    public DepositMoneyUserDto depositMoney (@RequestBody  DepositMoneyUserDto depositMoneyUserDto) throws JsonProcessingException {
-        return serviceSendTransactionRequest.sendDepositRequest(depositMoneyUserDto);
+    public void depositMoney (@RequestBody  DepositMoneyUserDto depositMoneyUserDto) throws JsonProcessingException {
+        serviceSendTransactionRequest.sendDepositRequest(depositMoneyUserDto);
     }
 }

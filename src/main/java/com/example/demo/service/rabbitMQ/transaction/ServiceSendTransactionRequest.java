@@ -31,18 +31,14 @@ public class ServiceSendTransactionRequest {
         return objectMapper.writeValueAsString(transactionDto);
     }
 
-    public TransactionResponseDTO sendTransactionRequest(TransactionDto transactionDto) throws JsonProcessingException {
+    public void sendTransactionRequest(TransactionDto transactionDto) throws JsonProcessingException {
         System.out.println("Hola");
-        /*rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
-        rabbitTemplate.convertAndSend("plantaFila","Alerta", sensorsDto);
-        rabbitTemplate.convertAndSend("plantaFila","Registro", sensorsDto);*/
-        return new TransactionResponseDTO(1,2,3, 56789);
+        rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
+        rabbitTemplate.convertAndSend("transactionExchange","transfer", transactionDto);
     }
-    public DepositMoneyUserDto sendDepositRequest (DepositMoneyUserDto depositMoneyUserDto) throws JsonProcessingException {
-        /*rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
-        rabbitTemplate.convertAndSend("plantaFila","Alerta", sensorsDto);
-        rabbitTemplate.convertAndSend("plantaFila","Registro", sensorsDto);*/
-        return new DepositMoneyUserDto(1,2);
+    public void sendDepositRequest (DepositMoneyUserDto depositMoneyUserDto) throws JsonProcessingException {
+        rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
+        rabbitTemplate.convertAndSend("transactionExchange","deposit", depositMoneyUserDto);
     }
     public MessageConverter jackson2JsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
