@@ -26,7 +26,6 @@ public class TransactionController {
 
     @PostMapping(path="/transaction/deposit-money")
     public DepositMoneyUserDto depositMoney (@RequestBody  DepositMoneyUserDto depositMoneyUserDto) throws JsonProcessingException {
-        System.out.println("Deposit");
         return serviceSendTransactionRequest.sendDepositRequest(depositMoneyUserDto);
     }
 }
